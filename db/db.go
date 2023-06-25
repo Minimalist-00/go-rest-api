@@ -11,7 +11,7 @@ import (
 )
 
 func NewDB() *gorm.DB { //*gorm.DB型のポインタを返す
-	if os.Getenv("GO_ENV") == "dev" {
+	if os.Getenv("GO_ENV") == "dev" { //環境変数がdevの場合
 		err := godotenv.Load() //ローカルの.envVファイルを読み込む
 		if err != nil {
 			log.Fatalln(err) //エラーがあればログに出力し強制終了
@@ -31,7 +31,7 @@ func NewDB() *gorm.DB { //*gorm.DB型のポインタを返す
 
 // DBをCLOSEする関数
 func CloseDB(db *gorm.DB) {
-	sqlDB, _ := db.DB() //DB構造体の実態のアドレスがsqlDBに格納
+	sqlDB, _ := db.DB() //*gorm.DB オブジェクトから実際の *sql.DB オブジェクトへのアクセスを取得
 	if err := sqlDB.Close(); err != nil {
 		log.Fatalln(err)
 	}
