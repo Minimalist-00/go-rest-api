@@ -59,5 +59,5 @@ func (uu *userUsecase) Login(user model.User) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return tokenString, nil
+	return tokenString, nil //JWTを返す
 }
