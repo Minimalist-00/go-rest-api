@@ -7,6 +7,7 @@ import (
 )
 
 func NewRouter(uc controller.IUserController) *echo.Echo {
+	// エンドポイントの設定
 	e := echo.New()
 	e.POST("/signup", uc.SignUp)
 	e.POST("/login", uc.LogIn)
