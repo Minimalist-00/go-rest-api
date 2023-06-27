@@ -21,7 +21,7 @@ func (tv *taskValidator) TaskValidate(task model.Task) error {
 		validation.Field( //検証したいフィールドを指定
 			&task.Title,
 			validation.Required.Error("タイトルを入力してください"),
-			validation.RuneLength(1, 10).Error("名前は10文字以下で入力してください"),
+			validation.RuneLength(1, 10).Error("タイトルは10文字以内で入力してください"),
 		),
 	)
 }
