@@ -24,14 +24,15 @@ func NewRouter(uc controller.IUserController, tc controller.ITaskController) *ec
 		CookiePath:     "/",
 		CookieDomain:   os.Getenv("API_DOMAIN"),
 		CookieHTTPOnly: true,
-		// CookieSameSite: http.SameSiteNoneMode,
-		CookieSameSite: http.SameSiteDefaultMode, // Postmanでのテスト用
+		CookieSameSite: http.SameSiteNoneMode,
+		// CookieSameSite: http.SameSiteDefaultMode, // Postmanでのテスト用
 		// CookieMaxAge:   60,
 	}))
 
 	e.POST("/signup", uc.SignUp)
 	e.POST("/login", uc.LogIn)
 	e.POST("/logout", uc.LogOut)
+	e.GET("/csrf", uc.CsrfToken)
 	t := e.Group("/tasks") // タスク関係のエンドポイントのグループ化
 	// ミドルウェアの設定
 	t.Use(echojwt.WithConfig(echojwt.Config{ //エンドポイントにミドルウェアの追加
