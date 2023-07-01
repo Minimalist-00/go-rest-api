@@ -11,8 +11,9 @@ import (
 )
 
 func NewDB() *gorm.DB { //*gorm.DB型のポインタを返す
+	/* ローカルで実行する用のコード */
 	if os.Getenv("GO_ENV") == "dev" { //環境変数がdevの場合
-		err := godotenv.Load() //ローカルの.envVファイルを読み込む
+		err := godotenv.Load() //ローカルの.envファイルを読み込む
 		if err != nil {
 			log.Fatalln(err) //エラーがあればログに出力し強制終了
 		}
